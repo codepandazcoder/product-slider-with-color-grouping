@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopify Product Page with Slick Slider</title>
+  <!-- Slick CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .product-slider, .thumbnail-slider {
+      margin-bottom: 20px;
+    }
+    .product-slider img, .thumbnail-slider img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .variant-options {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+    .variant-options label {
+      margin-right: 10px;
+      padding: 10px 20px;
+      background-color: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .variant-options input[type="radio"] {
+      display: none;
+    }
+    .variant-options input[type="radio"]:checked + label {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .thumbnail-slider img {
+      width: 100px;
+      height: auto;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .thumbnail-slider img.selected {
+      border: 2px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="product-slider">
+    <div data-color="Red">
+      <img src="https://neemans.com/cdn/shop/files/ND-GFS-Red-_WebOptimized_c_800x.jpg?v=1704369325" alt="Red Image 1">
+    </div>
+    <div data-color="Red">
+      <img src="https://neemans.com/cdn/shop/files/ND-GFS-Red-_WebOptimized_a_800x.jpg?v=1704369325" alt="Red Image 2">
+    </div>
+    <div data-color="Red">
+      <img src="https://neemans.com/cdn/shop/files/gripfitslipons_anatomy_181223_1_800x.jpg?v=1704369325" alt="Red Image 3">
+    </div>
+    <div data-color="Black">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Black_Grey_Beige_BG_b_800x.jpg?v=1722055213" alt="Black Image 1">
+    </div>
+    <div data-color="Black">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Black_Grey_Beige_BG_c_800x.jpg?v=1722055212" alt="Black Image 2">
+    </div>
+    <div data-color="Blue">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Navy_Blue_Beige_BG_b_800x.jpg?v=1722055227" alt="Blue Image 1">
+    </div>
+    <div data-color="Blue">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Navy_Blue_Beige_BG_c_800x.jpg?v=1722055227" alt="Blue Image 2">
+    </div>
+  </div>
+
+  <div class="thumbnail-slider">
+    <div data-color="Red">
+      <img src="https://neemans.com/cdn/shop/files/ND-GFS-Red-_WebOptimized_c_800x.jpg?v=1704369325" alt="Red Thumbnail 1">
+    </div>
+    <div data-color="Red">
+      <img src="https://neemans.com/cdn/shop/files/ND-GFS-Red-_WebOptimized_a_800x.jpg?v=1704369325" alt="Red Thumbnail 2">
+    </div>
+    <div data-color="Red">
+      <img src="https://neemans.com/cdn/shop/files/gripfitslipons_anatomy_181223_1_800x.jpg?v=1704369325" alt="Red Thumbnail 3">
+    </div>
+    <div data-color="Black">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Black_Grey_Beige_BG_b_800x.jpg?v=1722055213" alt="Black Thumbnail 1">
+    </div>
+    <div data-color="Black">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Black_Grey_Beige_BG_c_800x.jpg?v=1722055212" alt="Black Thumbnail 2">
+    </div>
+    <div data-color="Blue">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Navy_Blue_Beige_BG_b_800x.jpg?v=1722055227" alt="Blue Thumbnail 1">
+    </div>
+    <div data-color="Blue">
+      <img src="https://neemans.com/cdn/shop/files/ND_-_TSA_-_Navy_Blue_Beige_BG_c_800x.jpg?v=1722055227" alt="Blue Thumbnail 2">
+    </div>
+  </div>
+
+  <div class="variant-options">
+    <input type="radio" id="red" name="color" value="Red">
+    <label for="red">Red</label>
+    
+    <input type="radio" id="black" name="color" value="Black">
+    <label for="black">Black</label>
+    
+    <input type="radio" id="blue" name="color" value="Blue">
+    <label for="blue">Blue</label>
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Slick JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var $slider = $('.product-slider');
+    var $thumbnails = $('.thumbnail-slider');
+
+    // Initialize Slick Slider
+    $slider.slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      fade: true,
+      asNavFor: '.thumbnail-slider'
+    });
+
+    // Initialize Thumbnail Slider
+    $thumbnails.slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: '.product-slider',
+      dots: false,
+      centerMode: false,
+      focusOnSelect: true,
+      infinite: false
+    });
+
+    // Function to filter slides and thumbnails
+    function filterByColor(color) {
+      // Filter main slider images by selected color
+      $slider.slick('slickUnfilter');
+      $slider.slick('slickFilter', function(index, element) {
+        return $(element).data('color') === color;
+      });
+
+      // Filter thumbnail images by selected color
+      $thumbnails.slick('slickUnfilter');
+      $thumbnails.slick('slickFilter', function(index, element) {
+        return $(element).data('color') === color;
+      });
+
+      // Refresh sliders to apply filter
+      $slider.slick('refresh');
+      $thumbnails.slick('refresh');
+    }
+
+    // Listen for variant changes
+    $('input[name="color"]').change(function() {
+      var selectedColor = $(this).val();
+      filterByColor(selectedColor);
+    });
+
+    // Initialize thumbnail visibility
+    $('input[name="color"]:checked').trigger('change');
+  });
+</script>
+
+</body>
+</html>
